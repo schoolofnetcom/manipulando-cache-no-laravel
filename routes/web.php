@@ -96,7 +96,6 @@ Route::get('remove-cache', function(){
 
 });
 
-
 Route::get('helper-cache', function(){
     cache()->put('key', 'value of key');
     var_dump(cache()->get('key'));
@@ -121,4 +120,13 @@ Route::get('events', function(){
     // cache()->put('second-cache', 'second-value', 20);
     cache()->forget('first-cache');
     echo cache()->get('second-cache');
+});
+
+Route::get('conclusao', function(){
+    // if(!Cache::has('my-key')) {
+    //     Cache::put('my-key', 'value of my key', 20);
+    // }
+    Cache::add('my-key', 'value of my key', 20);
+
+    Cache::forever('key', 'value');
 });
