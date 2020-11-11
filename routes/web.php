@@ -69,3 +69,29 @@ Route::get('remember', function(){
 
     var_dump(Cache::get('users-forever'));
 });
+
+Route::get('remove-cache', function(){
+    // Cache::put('pull', 'pull-value');
+    // $pull = Cache::pull('pull');
+    // var_dump($pull, Cache::get('pull'));
+
+    // Cache::put('forget', 'forget-values');
+    // var_dump(Cache::get('forget'));
+    // echo "<hr>";
+    // Cache::forget('forget');
+    // var_dump(Cache::get('forget'));
+
+    Cache::put('key', "value");
+    Cache::put('key1', "value");
+    Cache::put('key2', "value");
+    Cache::put('key3', "value");
+
+    var_dump(Cache::get('key'), Cache::get('key2'), Cache::get('key3'), Cache::get('key1'));
+
+    // Cache::flush();
+    echo "<hr>";
+    Cache::store('file')->flush();
+
+    var_dump(Cache::get('key'), Cache::get('key2'), Cache::get('key3'), Cache::get('key1'));
+
+});
