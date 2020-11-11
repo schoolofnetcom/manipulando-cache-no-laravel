@@ -95,3 +95,23 @@ Route::get('remove-cache', function(){
     var_dump(Cache::get('key'), Cache::get('key2'), Cache::get('key3'), Cache::get('key1'));
 
 });
+
+
+Route::get('helper-cache', function(){
+    cache()->put('key', 'value of key');
+    var_dump(cache()->get('key'));
+
+    echo "<hr>";
+
+    cache(["key-1" => "value-1"], 20);
+    cache(["key-2" => "value-2"], now()->addMinutes(5));
+    var_dump(cache()->get('key-1'), cache()->get('key-2'));
+
+    echo "<hr>";
+
+
+    cache()->remember('my-key', now()->addMinutes(5), function(){
+        return "my key default value";
+    });
+    var_dump(cache()->get('my-key'));
+});
