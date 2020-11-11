@@ -115,3 +115,10 @@ Route::get('helper-cache', function(){
     });
     var_dump(cache()->get('my-key'));
 });
+
+Route::get('events', function(){
+    cache()->put('first-cache', 'first-value');
+    // cache()->put('second-cache', 'second-value', 20);
+    cache()->forget('first-cache');
+    echo cache()->get('second-cache');
+});
