@@ -27,3 +27,19 @@ Route::get('/get-cache', function() {
     }) . "<br>";
     var_dump($users);
 });
+
+Route::get('check-key', function(){
+    Cache::put('increment', 1);
+    if(Cache::has('increment')) {
+        Cache::increment('increment', 19);
+    }
+    echo Cache::get('increment');
+
+    echo "<hr>";
+
+    Cache::put('decrement', 20);
+    if(Cache::has('decrement')) {
+        Cache::decrement('decrement', 10);
+    }
+    echo Cache::get('decrement');
+});
