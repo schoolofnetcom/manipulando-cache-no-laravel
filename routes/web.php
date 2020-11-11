@@ -43,3 +43,29 @@ Route::get('check-key', function(){
     }
     echo Cache::get('decrement');
 });
+
+Route::get('remember', function(){
+    // $users = Cache::get('users', function(){
+    //     return DB::table('users')->get('id');
+    // });
+
+    // var_dump($users);
+
+    // echo "<hr>";
+
+    // var_dump(Cache::has('users'));
+
+    Cache::remember('users', 20, function(){
+        return DB::table('users')->get('id');
+    });
+
+    var_dump(Cache::get('users'));
+
+    Cache::rememberForever('users-forever', function(){
+        return DB::table('users')->get('id');
+    });
+
+    echo "<hr>";
+
+    var_dump(Cache::get('users-forever'));
+});
